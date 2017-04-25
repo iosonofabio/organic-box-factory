@@ -7,7 +7,7 @@ RUN pacman --noconfirm -S wget python python-numpy cython python-matplotlib swig
 # Make nonroot userfor makepkg
 RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 # Install aura for AUR packages
-RUN cd /home/singleceller; mkdir aura; cd aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+rX /home/singleceller/aura; su singleceller -c makepkg; pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar.xz --noconfirm
+RUN cd /home/singleceller; mkdir aura; cd aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/singleceller/aura; su singleceller -c makepkg; pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar.xz --noconfirm
 # Install STAR
 RUN aura -A star-seq-alignment
 # Install HTSeq
