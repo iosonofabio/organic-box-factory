@@ -1,3 +1,6 @@
+notifications:
+  email: false
+
 sudo: required
 
 services:
@@ -7,3 +10,6 @@ language: python
 
 before_install:
  - docker build -t iosonofabio/singlecell .
+
+script:
+ - echo "Got here!"
