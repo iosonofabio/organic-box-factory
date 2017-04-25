@@ -1,7 +1,7 @@
 FROM finalduty/archlinux:latest
 MAINTAINER Fabio Zanini <fabio DOT zanini AT stanford DOT edu>
 # Change pacman mirror
-RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 # Create uncompressed packages
 RUN sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
 # Update packages
