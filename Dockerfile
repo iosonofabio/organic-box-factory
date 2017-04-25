@@ -1,5 +1,7 @@
 FROM finalduty/archlinux:latest
 MAINTAINER Fabio Zanini <fabio DOT zanini AT stanford DOT edu>
+# Change pacman mirror
+RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 # Update packages
 RUN pacman -Syu --noconfirm
 # Update basic deps
