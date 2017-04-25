@@ -2,10 +2,12 @@ FROM finalduty/archlinux:latest
 MAINTAINER Fabio Zanini <fabio DOT zanini AT stanford DOT edu>
 # Change pacman mirror
 RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+# Create uncompressed packages
+RUN sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
 # Update packages
 RUN pacman -Syu --noconfirm
 # Update basic deps
-RUN pacman --noconfirm -S gcc binutils abs fakeroot wget python python-numpy cython python-matplotlib swig
+RUN pacman --noconfirm -S make gcc binutils abs fakeroot wget python python-numpy cython python-matplotlib swig
 # Make nonroot userfor makepkg
 RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 # Install aura for AUR packages
