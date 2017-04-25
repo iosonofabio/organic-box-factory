@@ -14,7 +14,9 @@ RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 RUN cd /home/singleceller; mkdir aura; cd aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/singleceller/aura; su singleceller -c makepkg; pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar --noconfirm
 # Install STAR
 RUN cd /home/singleceller; mkdir star-seq-alignment; cd star-seq-alignment; aura -Aw star-seq-alignment; tar -xf star-seq-alignment.tar.gz; chmod -R a+wrX /home/singleceller/star-seq-alignment; cd star-seq-alignment; su singleceller -c makepkg; pacman -U star-seq-alignment-v2.5-1-x86_64.pkg.tar --noconfirm
-# Install HTSeq
-RUN su root -c "aura -A python-sampy python-htseq"
+# Install pysam
+RUN cd /home/singleceller; mkdir pysam; cd pysam; aura -Aw python-pysam; tar -xf python-pysam.tar.gz; chmod -R a+wrX /home/singleceller/pysam; cd python-pysam; su singleceller -c makepkg; pacman -U $(ls python-pysam-*-x86_64.pkg.tar) --noconfirm
+# Install htseq
+RUN cd /home/singleceller; mkdir htseq; cd htseq; aura -Aw python-pysam; tar -xf python-htseq.tar.gz; chmod -R a+wrX /home/singleceller/htseq; cd python-htseq; su singleceller -c makepkg; pacman -U $(ls python-htseq-*-x86_64.pkg.tar) --noconfirm
 # Delete package manager cache
 RUN pacman -Scc --noconfirm
