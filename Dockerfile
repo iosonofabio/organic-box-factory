@@ -5,7 +5,7 @@ RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /et
 # Update packages
 RUN pacman -Syu --noconfirm
 # Update basic deps
-RUN pacman --noconfirm -S binutils abs wget python python-numpy cython python-matplotlib swig
+RUN pacman --noconfirm -S binutils abs fakeroot wget python python-numpy cython python-matplotlib swig
 # Make nonroot userfor makepkg
 RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 # Install aura for AUR packages
