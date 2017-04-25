@@ -3,7 +3,7 @@ MAINTAINER Fabio Zanini <fabio DOT zanini AT stanford DOT edu>
 # Update packages
 RUN pacman -Syu --noconfirm
 # Update basic deps
-RUN pacman --noconfirm -S wget python python-numpy cython python-matplotlib swig
+RUN pacman --noconfirm -S binutils wget python python-numpy cython python-matplotlib swig
 # Make nonroot userfor makepkg
 RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 # Install aura for AUR packages
