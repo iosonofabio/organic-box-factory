@@ -10,7 +10,6 @@ language: python
 
 before_install:
  - docker build -t iosonofabio/singlecell-container .
- - echo "Current folder: $(pwd)"
  - docker run iosonofabio/singlecell-container /bin/sh -c $(pwd)/tests/test_STAR_htseq-count_yeast.sh
 
 script:
