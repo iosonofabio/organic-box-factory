@@ -16,6 +16,12 @@ script:
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    
+    # Push to docker hub
     docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
     docker push iosonofabio/singlecell-container;
+
+    # Make singuarity container
+    docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity-image:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container
+
     fi
