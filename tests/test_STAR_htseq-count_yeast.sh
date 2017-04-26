@@ -20,3 +20,9 @@ htseq-count -m intersection-nonempty Aligned.out.sam Saccharomyces_cerevisiae.R6
 
 echo "Compare with original counts"
 cmp /data/example_data/yeast_htseq_count_test.tsv /data/example_data/yeast_RNASeq_excerpt_htseq_counts.tsv
+
+echo "Run pipeline"
+/pipeline/pipeline.py --readfilenames /data/example_data/yeast_RNASeq_excerpt.fastq.gz --genomefolder /data/example_data/STAR --annotationfilename /data/example_data/Saccharomyces_cerevisiae.R64-1-1.88.gtf --outputfolder /data/example_data/output
+
+echo "Compare with original counts"
+cmp /data/example_data/output/counts.tsv /data/example_data/yeast_RNASeq_excerpt_htseq_counts_withheader.tsv

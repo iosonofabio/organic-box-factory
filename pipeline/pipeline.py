@@ -19,16 +19,24 @@ class Pipeline:
             raw_reads_filenames,
             genome_foldername,
             annotation_filename,
+            output_foldername,
             verbose=0,
             log_foldername=None,
+            nthreads=1,
             steps=()):
 
         self.raw_reads_filenames = raw_reads_filenames
-        self.genome_foldername = genome_foldername
+        self.genome_foldername = genome_foldername.rstrip('/')+'/'
         self.annotation_filename = annotation_filename
+        self.output_foldername = output_foldername
+        if self.output_foldername is not None:
+            self.output_foldername = self.output_foldername.rstrip('/')+'/'
         self.verbose = verbose
         self.log_foldername = log_foldername
+        if self.log_foldername is not None:
+            self.log_foldername = self.log_foldername.rstrip('/')+'/'
         self.log = log_foldername is not None
+        self.nthreads = nthreads
         self.steps = steps
 
     def __call__(self):
@@ -61,6 +69,16 @@ class Pipeline:
     def get_log_done_filename(self, step):
         return self.log_foldername+step+'.done'
 
+    def get_star_mapped_filename(self):
+        return self.output_foldername+'Aligned.out.bam'
+
+    def get_star_unaligned_filenames(self):
+        return (self.output_foldername+'Unmapped.out.mate1',
+                self.output_foldername+'Unmapped.out.mate2')[:len(self.raw_reads_filenames)]
+
+    def get_htseq_count_output_filename(self):
+        return self.output_foldername+'counts.tsv'
+
     def map_star(self):
         '''Map reads against human transcriptome'''
         import subprocess as sp
@@ -69,7 +87,7 @@ class Pipeline:
         if self.verbose:
             print('Map star: start')
 
-        os.mkdirs(self.get_star_foldername())
+        os.makedirs(self.output_foldername, exist_ok=True)
 
         if self.verbose:
             print('Map star: folder created')
@@ -87,8 +105,8 @@ class Pipeline:
                 raise FileNotFoundError('STAR aligner not found!')
 
         call = [star_exec,
-                '--genomeDir', self.get_star_genome_fdn(),
-                '--readFilesIn'] + self.get_raw_reads_filenames() + [
+                '--genomeDir', self.genome_foldername.rstrip('/'),
+                '--readFilesIn'] + self.raw_reads_filenames + [
                 '--readFilesCommand', 'zcat',
                 '--outFilterType', 'BySJout',
                 '--outFilterMultimapNmax', '20',
@@ -100,12 +118,12 @@ class Pipeline:
                 '--alignIntronMax', '1000000',
                 '--alignMatesGapMax', '1000000',
                 '--outSAMstrandField', 'intronMotif',
-                '--runThreadN', self.n_threads,
+                '--runThreadN', str(self.nthreads),
                 '--outSAMtype', 'BAM', 'Unsorted',
                 '--outSAMattributes', 'NH', 'HI', 'AS', 'NM', 'MD',
                 '--outFilterMatchNminOverLread', '0.4',
                 '--outFilterScoreMinOverLread', '0.4',
-                '--outFileNamePrefix', self.get_star_output_fdn(),
+                '--outFileNamePrefix', self.output_foldername,
                 '--clip3pAdapterSeq', 'CTGTCTCTTATACACATCT',
                 '--outReadsUnmapped', 'Fastx',
                 ]
@@ -132,7 +150,7 @@ class Pipeline:
         if self.verbose:
             print('Count htseq-count: start')
 
-        os.makedirs(self.get_htseq_count_foldername())
+        os.makedirs(self.output_foldername, exist_ok=True)
 
         if self.verbose:
             print('Count htseq-count: folder created')
@@ -140,12 +158,12 @@ class Pipeline:
         samtools_exec = os.getenv('SAMTOOLS', 'samtools')
         htseqcount_exec = os.getenv('HTSEQ-COUNT', default='htseq-count')
         call1 = [samtools_exec,
-                 'view', self.get_star_output_filename(),
+                 'view', self.get_star_mapped_filename(),
                  ]
         call2 = [htseqcount_exec,
                  '-m', 'intersection-nonempty',
                  '-s', 'no',
-                 '-', self.get_htseq_count_annotation_filename(),
+                 '-', self.annotation_filename,
                  ]
 
         if self.verbose:
@@ -184,20 +202,23 @@ class Pipeline:
 if __name__ == '__main__':
 
     pa = argparse.ArgumentParser(description='scRNA-Seq pipeline')
-    g = pa.add_mutually_exclusive_group(required=True)
-    g.add_argument('--readfilenames', nargs='+', required=True,
-                   help='Path to the file(s) containing the fastq files')
-    g.add_argument('--genomefolder', required=True,
-                   help='Path to the genome folder for mapping. ' +
-                   'It may or may not contain the STAR hashes ' +
-                   '(if it does not, hashes will be generated there).')
-    g.add_argument('--annotationfilename', required=True,
-                   help='Path to the GTF file containing the annotations')
+    pa.add_argument('--readfilenames', nargs='+', required=True,
+                    help='Path to the file(s) containing the fastq files')
+    pa.add_argument('--genomefolder', required=True,
+                    help='Path to the genome folder for mapping. ' +
+                    'It may or may not contain the STAR hashes ' +
+                    '(if it does not, hashes will be generated there).')
+    pa.add_argument('--annotationfilename', required=True,
+                    help='Path to the GTF file containing the annotations')
+    pa.add_argument('--outputfolder', required='True',
+                    help='Path to output results to')
     pa.add_argument('--steps', nargs='+', default=('star', 'htseq-count'),
                     choices=['star', 'htseq-count'],
                     help='steps to execute')
     pa.add_argument('--verbose', type=int, choices=[0, 1, 2], default=1,
                     help='verbosity level')
+    pa.add_argument('--nthreads', type=int, default=1,
+                    help='Number of threads for STAR')
     pa.add_argument('--logfolder', default=None,
                     help='Folder where to store a log of the processing')
     pa.add_argument('--check-done', action='store_true',
@@ -209,8 +230,10 @@ if __name__ == '__main__':
             raw_reads_filenames=args.readfilenames,
             genome_foldername=args.genomefolder,
             annotation_filename=args.annotationfilename,
+            output_foldername=args.outputfolder,
             log_foldername=args.logfolder,
             verbose=args.verbose,
+            nthreads=args.nthreads,
             steps=args.steps)
     if args.check_done:
         pip.check_done()
