@@ -1,7 +1,5 @@
 FROM finalduty/archlinux:latest
 MAINTAINER Fabio Zanini <fabio DOT zanini AT stanford DOT edu>
-# Add pipeline to image
-ADD pipeline /
 # Change pacman mirror
 RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 # Create uncompressed packages
@@ -18,3 +16,7 @@ RUN cd /home/singleceller; mkdir -p packages/aura; cd packages/aura; wget https:
 RUN for PKGNAME in star-seq-alignment python-pysam python-htseq; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 # Delete package manager cache
 RUN pacman -Scc --noconfirm
+# Add pipeline to image
+ADD pipeline /
+# Set ENTRYPOINT to run the Docker/Singularity image
+ENTRYPOINT /pipeline/pipeline.py
