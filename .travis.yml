@@ -10,10 +10,11 @@ language: python
 
 before_install:
  - docker build -t iosonofabio/singlecell-container .
- - docker run iosonofabio/singlecell-container /bin/sh -c $(pwd)/tests/test_STAR_htseq-count_yeast.sh
+ - docker cp tests iosonofabio/singlecell-container:/
+ - docker cp example_data iosonofabio/singlecell-container:/
 
 script:
- - echo "Got here!"
+ - docker run iosonofabio/singlecell-container /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
