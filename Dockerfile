@@ -18,9 +18,9 @@ RUN for PKGNAME in 'star-seq-alignment' 'python-pysam' 'python-htseq'; do export
 RUN pacman -Scc --noconfirm
 
 # Tests
-# Compile yeast genome with STAR
-RUN cd example_data; mkdir STAR; gunzip Saccharomyces_cerevisiae.R64-1-1.88.gtf.gz; gunzip Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz; cp Saccharomyces_cerevisiae.R64-1-1.88.gtf STAR/; cp Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa STAR/; cd STAR; star-seq-alignment --runMode genomeGenerate --runThreadN 1 --genomeDir . --genomeFastaFiles Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa --sjdbGTFfile Saccharomyces_cerevisiae.R64-1-1.88.gtf
-# Map reads to yeast genome
-RUN cd example_data/STAR; star-seq-alignment --runMode alignReads --runThreadN 1 --genomeDir . --readFilesIn ../yeast_RNASeq_excerpt.fastq.gz --readFilesCommand zcat
-# Count genes
-RUN htseq-count -m intersection-nonempty Aligned.out.sam Saccharomyces_cerevisiae.R64-1-1.88.gtf
+## Compile yeast genome with STAR
+#RUN cd example_data; mkdir STAR; gunzip Saccharomyces_cerevisiae.R64-1-1.88.gtf.gz; gunzip Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz; cp Saccharomyces_cerevisiae.R64-1-1.88.gtf STAR/; cp Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa STAR/; cd STAR; star-seq-alignment --runMode genomeGenerate --runThreadN 1 --genomeDir . --genomeFastaFiles Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa --sjdbGTFfile Saccharomyces_cerevisiae.R64-1-1.88.gtf
+## Map reads to yeast genome
+#RUN cd example_data/STAR; star-seq-alignment --runMode alignReads --runThreadN 1 --genomeDir . --readFilesIn ../yeast_RNASeq_excerpt.fastq.gz --readFilesCommand zcat
+## Count genes
+#RUN htseq-count -m intersection-nonempty Aligned.out.sam Saccharomyces_cerevisiae.R64-1-1.88.gtf
