@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 echo "Prepare folders"
-cd example_data 
+cd /data/example_data 
 mkdir STAR
 gunzip Saccharomyces_cerevisiae.R64-1-1.88.gtf.gz
 gunzip Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz
