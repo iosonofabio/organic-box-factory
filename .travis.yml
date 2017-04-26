@@ -15,10 +15,8 @@ script:
  - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell iosonofabio/singlecell-container /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
 
 after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    # Push to docker hub
-    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-    docker push iosonofabio/singlecell-container;
-    # Make singuarity container
-    docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container;
-    fi
+ # Push to docker hub
+ - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+ - docker push iosonofabio/singlecell-container;
+ # Make singuarity container
+ - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container;
