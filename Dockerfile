@@ -1,7 +1,7 @@
 FROM finalduty/archlinux:latest
 MAINTAINER Fabio Zanini <fabio DOT zanini AT stanford DOT edu>
 # Add pipeline to image
-ADD $(pwd)/pipline.py /pipeline/
+ADD pipeline /
 # Change pacman mirror
 RUN echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 # Create uncompressed packages
