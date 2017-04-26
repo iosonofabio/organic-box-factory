@@ -16,4 +16,7 @@ echo "Map reads to yeast genome"
 star-seq-alignment --runMode alignReads --runThreadN 1 --genomeDir . --readFilesIn ../yeast_RNASeq_excerpt.fastq.gz --readFilesCommand zcat
 
 echo "Count genes"
-htseq-count -m intersection-nonempty Aligned.out.sam Saccharomyces_cerevisiae.R64-1-1.88.gtf
+htseq-count -m intersection-nonempty Aligned.out.sam Saccharomyces_cerevisiae.R64-1-1.88.gtf > /data/example_data/yeast_htseq_count_test.tsv
+
+echo "Compare with original counts"
+cmp /data/example_data/yeast_htseq_count_test.tsv /data/example_data/yeast_RNASeq_excerpt_htseq_counts.tsv
