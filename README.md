@@ -19,5 +19,5 @@ The current images are hosted here:
 
 ## Examples
 
- - Docker: `docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell --rm iosonofabio/singlecell-container /pipeline/pipeline.py --readfilenames /data/example_data/yeast_RNASeq_excerpt.fastq.gz --genomefolder /data/example_data/STAR --annotationfilename /data/example_data/Saccharomyces_cerevisiae.R64-1-1.88.gtf --outputfolder /data/example_data/output`
+ - Docker: `docker run -v $(pwd)/example_data:/data/example_data --name singlecell --rm iosonofabio/singlecell-container /pipeline/pipeline.py --readfilenames /data/example_data/yeast_RNASeq_excerpt.fastq.gz --genomefolder /data/example_data/STAR --annotationfilename /data/example_data/Saccharomyces_cerevisiae.R64-1-1.88.gtf --outputfolder /data/example_data/output`
  - Singularity: `working on it`
