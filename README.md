@@ -2,9 +2,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # singlecell-container
-... allows you to build a Docker image **and** a singularity image for single cell RNA-Seq a la SmartSeq2 (STAR mapping, htseq-count gene counting).
+This repository allows you to build a Docker image **and** a singularity image for single cell RNA-Seq a la SmartSeq2 ([STAR](https://github.com/alexdobin/STAR) mapping, [htseq-count](https://github.com/simon-anders/htseq) gene counting).
 
-## Installation
+## How to use this repo
+If you are a singlecell user that would like to run the pipeline without bothering about operating systems, clusters, et al., just install the image and run it (see below). If you are a developer searching for working examples of this pipeline, including the continuous integration and deployment to docker-hub and singularity-hub, clone the repo and start coding away from the `Dockerfile` and `.travis.yml`!
+
+## Image istallation
 The current images are hosted here:
 
  - [Docker](https://hub.docker.com/r/iosonofabio/singlecell-container/): `docker pull iosonofabio/singlecell-container`
