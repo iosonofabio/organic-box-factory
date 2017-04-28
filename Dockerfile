@@ -16,7 +16,9 @@ RUN cd /home/singleceller; mkdir -p packages/aura; cd packages/aura; wget https:
 RUN for PKGNAME in 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools'; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 # Delete package manager cache
 RUN pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
+# Create an empty folder to bind singularity folders for systems that don't support overlay filesystems
+RUN mkdir /mnt/singularity_bind
 # Add pipeline to image
-COPY pipeline /pipeline
+COPY pipeline/pipeline.py /usr/bin/pipeline
 # Set ENTRYPOINT to run the Docker/Singularity image
-#ENTRYPOINT /pipeline/pipeline.py
+#ENTRYPOINT /usr/bin/pipeline

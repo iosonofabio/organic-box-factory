@@ -9,14 +9,20 @@ services:
 language: python
 
 before_install:
+ # Docker build
  - docker build -t iosonofabio/singlecell-container .
+ # Singularity build
+ - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container;
 
 script:
+ # Docker tests
  - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell --rm iosonofabio/singlecell-container /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
+ # Singularity tests
+ - singularity exec singularity_images/iosonofabio_singlecell-container*.img tests/test_STAR_htseq-count_yeast.sh
 
 after_success:
  # Push to docker hub
  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
  - docker push iosonofabio/singlecell-container;
- # Make singuarity container
- - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container;
+ # Push to singularity hub
+ # FIXME: can this be done programmatically at all??
