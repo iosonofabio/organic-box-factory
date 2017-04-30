@@ -36,16 +36,17 @@ else
   echo "FAIL"
   FAILED=1
 fi
-rm -rf STAR output
+rm -rf output
 # END OF TEST 1
 
 # TEST 2: call the pipeline script
-mkdir STAR output
+# TODO: the pipeline does not create a genome folder ATM
+mkdir output
 echo "Run pipeline"
 pipeline --readfilenames yeast_RNASeq_excerpt.fastq.gz --genomefolder STAR --annotationfilename Saccharomyces_cerevisiae.R64-1-1.88.gtf --outputfolder output
 
 echo "Compare with original counts"
-cmp output_pipeline/counts.tsv yeast_RNASeq_excerpt_htseq_counts_withheader.tsv
+cmp output/counts.tsv yeast_RNASeq_excerpt_htseq_counts_withheader.tsv
 if [ -z $? ]; then
   echo "SUCCESS"
 else
