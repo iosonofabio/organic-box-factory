@@ -1,7 +1,6 @@
 #!/usr/bin/bash
 # NOTE: this script tests both Docker and singularity, but the data is mounted on different folders
 FAILED=0
-echo "Prepare folders"
 if [ -d /data/example_data ]; then
   CONTAINER_TYPE=docker
   DATA_ROOT=/data/
@@ -9,8 +8,11 @@ else
   CONTAINER_TYPE=singularity
   DATA_ROOT=''
 fi
-EXAMPLE_DATA=${DATA_ROOT}example_data
-cd ${EXAMPLE_DATA}
+
+echo "Container type: ${CONTAINER_TYPE}"
+
+echo "Prepare folders"
+cd ${DATA_ROOT}example_data
 gunzip Saccharomyces_cerevisiae.R64-1-1.88.gtf.gz
 gunzip Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz
 
@@ -30,11 +32,11 @@ htseq-count -m intersection-nonempty output/Aligned.out.sam Saccharomyces_cerevi
 
 echo "Compare with original counts"
 cmp output/counts.tsv yeast_RNASeq_excerpt_htseq_counts.tsv
-if [ -z $? ]; then
-  echo "SUCCESS"
-else
+if [ $? -ne 0 ]; then
   echo "FAIL"
   FAILED=1
+else
+  echo "SUCCESS"
 fi
 rm -rf output
 # END OF TEST 1
@@ -47,14 +49,14 @@ pipeline --readfilenames yeast_RNASeq_excerpt.fastq.gz --genomefolder STAR --ann
 
 echo "Compare with original counts"
 cmp output/counts.tsv yeast_RNASeq_excerpt_htseq_counts_withheader.tsv
-if [ -z $? ]; then
-  echo "SUCCESS"
-else
+if [ $? -ne 0 ]; then
   echo "FAIL"
   FAILED=2
+else
+  echo "SUCCESS"
 fi
 
-rm -rf STAR output
+rm -rf STAR output Log.out
 # END OF TEST 2
 
 gzip Saccharomyces_cerevisiae.R64-1-1.88.gtf

@@ -96,7 +96,7 @@ class Pipeline:
         if star_exec is None:
             for star_exec in ['STAR', 'star-seq-alignment']:
                 try:
-                    sp.call(star_exec)
+                    sp.call([star_exec, '--version'])
                 except FileNotFoundError:
                     continue
                 else:
