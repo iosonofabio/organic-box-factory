@@ -7,7 +7,7 @@ RUN sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
 # Update packages
 RUN pacman -Syu --noconfirm
 # Update basic deps
-RUN pacman --noconfirm -S make gcc binutils m4 autoconf automake libtool gzip abs fakeroot wget python python-numpy python-matplotlib cython swig git
+RUN pacman --noconfirm -S make gcc binutils gzip abs fakeroot wget python python-numpy python-matplotlib cython swig
 # Make nonroot userfor makepkg
 RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 # Install aura for AUR packages
