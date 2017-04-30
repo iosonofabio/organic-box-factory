@@ -13,7 +13,7 @@ RUN useradd -m -g users -G wheel -s /bin/bash singleceller
 # Install aura for AUR packages
 RUN cd /home/singleceller; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/singleceller/packages/aura; su singleceller -c makepkg; pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar --noconfirm
 # Install packages from AUR
-RUN for PKGNAME in 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools' 'singularity-container-git'; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
+RUN for PKGNAME in 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools' 'singularity-container'; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 # Delete package manager cache
 RUN pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
 # Create an empty folder to bind singularity folders for systems that don't support overlay filesystems
