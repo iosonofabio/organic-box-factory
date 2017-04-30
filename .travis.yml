@@ -12,10 +12,10 @@ python:
  - "3.6"
 
 before_install:
- # Install singularity on the host
- - ./.travis_install_singularity.sh
  # Docker build
  - docker build -t iosonofabio/singlecell-container .
+ # Install singularity on the host
+ - ./.travis_install_singularity.sh
  # Singularity build
  - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container;
 
