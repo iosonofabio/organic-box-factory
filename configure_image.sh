@@ -12,3 +12,4 @@ cd /home/singleceller; mkdir -p packages/aura; cd packages/aura; wget https://au
 # Install AUR packages
 for PKGNAME in 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools'; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
+
