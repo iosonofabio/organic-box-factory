@@ -31,6 +31,6 @@ script:
 after_success:
  # Push to docker hub
  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
- - docker push iosonofabio/singlecell-container;
+ - docker push iosonofabio/quakelab-containers:singlecell;
  # Push to singularity hub
  # FIXME: can this be done programmatically at all??

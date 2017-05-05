@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/iosonofabio/quakelab_containers.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab_containers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# singlecell-container
+# quakelab-containers: singlecell
 This repository allows you to build a Docker image **and** a singularity image for single cell RNA-Seq a la SmartSeq2 ([STAR](https://github.com/alexdobin/STAR) mapping, [htseq-count](https://github.com/simon-anders/htseq) gene counting).
 
 ## How to use this repo
