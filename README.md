@@ -3,8 +3,8 @@
 # quakelab-containers
 This repository allows you to build a Docker image **and** a singularity image for various pipelines in the Quake lab at Stanford. Each pipeline is a different branch (the `master` branch is just an empty skeleton):
 
- - [singlecell](https://github.com/iosonofabio/quakelab_containers/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
- - [singlecell-10X](https://github.com/iosonofabio/quakelab_containers/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
+ - [singlecell](https://github.com/iosonofabio/quakelab-containers/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
+ - [singlecell-10X](https://github.com/iosonofabio/quakelab-containers/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
  - **cell-free RNA-Seq** (planned)
 
 ## How to use this repo
