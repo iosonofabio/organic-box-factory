@@ -17,7 +17,7 @@ before_install:
  # Install singularity on the host
  - ./.travis_install_singularity.sh
  # Singularity build (from docker)
- - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/quakelab-containers;
+ - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity "iosonofabio/quakelab-containers:$TRAVIS_BRANCH";
  # Singularity build (from Singulatiry file)
  - sudo singularity create --size 2500 ./singularity_images/singlecell-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/singlecell-singularity-bootstrap.img Singularity
 
@@ -25,7 +25,7 @@ script:
  # Docker tests
  - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell --rm "iosonofabio/quakelab-containers:$TRAVIS_BRANCH" /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
  # Singularity tests
- - singularity exec singularity_images/iosonofabio_singlecell-containers*.img tests/test_STAR_htseq-count_yeast.sh
+ - singularity exec singularity_images/iosonofabio_quakelab-containers*.img tests/test_STAR_htseq-count_yeast.sh
  - singularity exec singularity_images/singlecell-singularity-bootstrap.img tests/test_STAR_htseq-count_yeast.sh
 
 after_success:
