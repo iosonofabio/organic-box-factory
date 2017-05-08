@@ -1,5 +1,5 @@
 #!/bin/sh
-PACMAN_PACKAGES=('gcc' 'libxml')
+PACMAN_PACKAGES=('gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'libxml' 'binutils')
 AUR_PACKAGES=('bcl2fastq' 'cellranger')
 
 # Install pacman packages
