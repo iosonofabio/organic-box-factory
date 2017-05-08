@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Quakelab-containers
+# quakelab-containers
 This repository allows you to build a Docker image **and** a singularity image for various pipelines in the Quake lab at Stanford. Each pipeline is a different branch (the `master` branch is just an empty skeleton):
 
  - [singlecell](https://github.com/iosonofabio/quakelab_containers/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
