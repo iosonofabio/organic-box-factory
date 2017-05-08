@@ -13,24 +13,24 @@ python:
 
 before_install:
  # Docker build
- - docker build -t iosonofabio/singlecell-container .
+ - docker build -t "iosonofabio/quakelab_containers:$TRAVIS_BRANCH" .
  # Install singularity on the host
  - ./.travis_install_singularity.sh
  # Singularity build (from docker)
- - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/singlecell-container;
+ - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/quakelab-containers;
  # Singularity build (from Singulatiry file)
  - sudo singularity create --size 2500 ./singularity_images/singlecell-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/singlecell-singularity-bootstrap.img Singularity
 
 script:
  # Docker tests
- - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell --rm iosonofabio/singlecell-container /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
+ - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell --rm "iosonofabio/quakelab-containers:$TRAVIS_BRANCH" /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
  # Singularity tests
- - singularity exec singularity_images/iosonofabio_singlecell-container*.img tests/test_STAR_htseq-count_yeast.sh
+ - singularity exec singularity_images/iosonofabio_singlecell-containers*.img tests/test_STAR_htseq-count_yeast.sh
  - singularity exec singularity_images/singlecell-singularity-bootstrap.img tests/test_STAR_htseq-count_yeast.sh
 
 after_success:
  # Push to docker hub
  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
- - docker push iosonofabio/quakelab-containers:singlecell;
+ - docker push "iosonofabio/quakelab-containers:$TRAVIS_BRANCH";
  # Push to singularity hub
  # FIXME: can this be done programmatically at all??
