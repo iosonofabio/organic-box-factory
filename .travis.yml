@@ -13,25 +13,25 @@ python:
 
 before_install:
  # Docker build
- - docker build -t iosonofabio/quakelab-containers:$TRAVIS_BRANCH .
+ - docker build -t "iosonofabio/quakelab-containers:$TRAVIS_BRANCH" .
  # Install singularity on the host
  - ./.travis_install_singularity.sh
  # Singularity build (from docker)
- - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity iosonofabio/quakelab-containers;
+ - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity "iosonofabio/quakelab-containers:$TRAVIS_BRANCH";
  # Singularity build (from Singulatiry file)
  - sudo singularity create --size 2500 ./singularity_images/quakelab-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/quakelab-singularity-bootstrap.img Singularity
 
 script:
  # Docker tests
- - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name quakelab-container --rm "iosonofabio/quakelab-containers:$TRAVIS_BRANCH" /bin/sh -c /tests/test.sh
+ - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name quakelab-containers --rm "iosonofabio/quakelab-containers:$TRAVIS_BRANCH" /bin/sh -c /tests/test.sh
  # Singularity tests
  - singularity exec singularity_images/iosonofabio_quakelab-containers*.img tests/test.sh
  - singularity exec singularity_images/quakelab-singularity-bootstrap.img tests/test.sh
 
 after_success:
  # Uncomment for deploying
- ## Push to docker hub
- #- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
- #- docker push iosonofabio/quakelab-containers:$TRAVIS_BRANCH;
+ # Push to docker hub
+ - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+ - docker push "iosonofabio/quakelab-containers:$TRAVIS_BRANCH";
  # Push to singularity hub
  # FIXME: can this be done programmatically at all??

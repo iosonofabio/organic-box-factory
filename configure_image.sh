@@ -1,7 +1,7 @@
 #!/bin/sh
 PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python2')
 AUR_PACKAGES=('bcl2fastq')
-AUR_PACKAGES_WITH_ASSETS=('cellranger')
+AUR_PACKAGES_FIXED=('cellranger')
 
 # Install pacman packages
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
@@ -18,8 +18,8 @@ cd /home/singleceller; mkdir -p packages/aura; cd packages/aura; wget https://au
 # Install AUR packages
 for PKGNAME in ${AUR_PACKAGES[@]}; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 
-# Install AUR packages with assets
-for PKGNAME in ${AUR_PACKAGES_WITH_ASSETS[@]}; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; mv /assets/${PKGNAME}*.tar.gz ${PKGNAME}/; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
+# Install AUR packages with fixed and split assets
+for PKGNAME in ${AUR_PACKAGES_FIXED[@]}; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; mkdir ${PKGNAME}; mv /assets/${PKGNAME}/PKGBUILD ${PKGNAME}/PKGBUILD; zcat /assets/${PKGNAME}/xa*.tar.gz > ${PKGNAME}/${PKGNAME}.tar.gz; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 
 # Remove cache and tmp files
 pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
