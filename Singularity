@@ -3,6 +3,7 @@ bootstrap:docker
 From:finalduty/archlinux:latest
 
 %setup
+    cp -r assets "$SINGULARITY_ROOTFS/"
     cp configure_image.sh "$SINGULARITY_ROOTFS/configure_image.sh"
     cp pipeline/pipeline.py "$SINGULARITY_ROOTFS/usr/bin/pipeline"
 
