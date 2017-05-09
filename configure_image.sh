@@ -26,7 +26,7 @@ for PKGNAME in ${AUR_PACKAGES_FIXED[@]}; do cd /home/singleceller; mkdir -p pack
 
 # Install anaconda environments
 source /opt/anaconda/bin/activate root
-for AENV in ${ANACONDA_ENVS[@]}; do conda env create -f /assets/anaconda/${AENV}; done
+for AENV in ${ANACONDA_ENVS[@]}; do conda env create -f /assets/anaconda/${AENV} --quiet; done
 
 # Remove cache and tmp files
 pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
