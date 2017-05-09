@@ -1,5 +1,5 @@
 #!/bin/sh
-PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python' 'python-numpy' 'python-matplotlib' 'python-pandas' 'jre8-openjdk' 'jdk8-openjdk' 'perl')
+PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python' 'python-numpy' 'python-matplotlib' 'python-pandas' 'cython' 'jre8-openjdk' 'jdk8-openjdk' 'perl')
 AUR_PACKAGES=('picard-tools' 'fastqc' 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools')
 AUR_PACKAGES_FIXED=()
 
