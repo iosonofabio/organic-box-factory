@@ -25,6 +25,7 @@ for PKGNAME in ${AUR_PACKAGES[@]}; do cd /home/singleceller; mkdir -p packages/$
 for PKGNAME in ${AUR_PACKAGES_FIXED[@]}; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; mkdir ${PKGNAME}; PKGVER=$(grep '^pkgver=' /assets/${PKGNAME}/PKGBUILD | sed 's/pkgver=//'); mv /assets/${PKGNAME}/PKGBUILD ${PKGNAME}/PKGBUILD; zcat /assets/${PKGNAME}/split/xa*.gz > ${PKGNAME}/${PKGNAME}-${PKGVER}.tar.gz && rm -rf /assets/${PKGNAME}; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 
 # Install anaconda environments
+source /opt/anaconda/bin/activate root
 for AENV in ${ANACONDA_ENVS[@]}; do conda env create -f /assets/anaconda/${AENV}; done
 
 # Remove cache and tmp files
