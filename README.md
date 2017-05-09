@@ -17,7 +17,7 @@ If you are a user that would like to run a pipeline without bothering about oper
 
 ### Install an image
  - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:<branch name>`
- - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:<branch name>`
+ - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab-containers:<branch name>`
 
 where `<branch name>` is the name of the git branch/pipeline you want to install.
 
