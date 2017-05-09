@@ -11,6 +11,7 @@ At the moment the following pipelines are available - each pipeline is a differe
  - [singlecell](https://github.com/iosonofabio/quakelab-containers/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
  - [singlecell-10X](https://github.com/iosonofabio/quakelab-containers/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
  - [cell-free RNA-Seq](https://github.com/iosonofabio/quakelab-containers/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
+ - *metagenomics*: **planned**
 
 ## Usage
 If you are a user that would like to run a pipeline without bothering about operating systems, clusters, et al., just install the image from docker-hub or singularity-hub and run it.
