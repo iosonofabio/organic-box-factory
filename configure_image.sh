@@ -1,7 +1,7 @@
 #!/bin/sh
-PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python2')
-AUR_PACKAGES=('bcl2fastq')
-AUR_PACKAGES_FIXED=('cellranger')
+PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python' 'python-numpy' 'python-pandas' 'jre8-openjdk' 'jdk8-openjdk' 'perl')
+AUR_PACKAGES=('picard-tools' 'fastqc' 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools')
+AUR_PACKAGES_FIXED=()
 
 # Install pacman packages
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
@@ -25,4 +25,3 @@ for PKGNAME in ${AUR_PACKAGES_FIXED[@]}; do cd /home/singleceller; mkdir -p pack
 
 # Remove cache and tmp files
 pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
-

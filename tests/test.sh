@@ -12,5 +12,5 @@ fi
 echo "Container type: ${CONTAINER_TYPE}"
 
 echo "Test executables"
-EXECUTABLES=('bcl2fastq --help' 'cellranger')
+EXECUTABLES=('fastqc' 'samtools' 'star-seq-alignment' 'htseq-count')
 for EXE in "${EXECUTABLES[@]}"; do echo "Testing ${EXE}"; ${EXE}; if [ $? -ne 0 ]; then exit $?; fi; done
