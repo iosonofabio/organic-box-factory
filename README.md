@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/iosonofabio/quakelab_containers.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab_containers)
+[![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab_containers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # quakelab-containers: singlecell
@@ -11,7 +11,7 @@ If you are a singlecell user that would like to run the pipeline without botheri
 The current images are hosted here:
 
  - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:singlecell`
- - [Singularity](https://singularity-hub.org/collections/132/): `singularity pull shub://iosonofabio/singlecell_container:master`
+ - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:singlecell`
 
 **NOTE**: you may need a development version of singularity to use the command `pull`.
 
