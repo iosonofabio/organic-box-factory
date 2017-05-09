@@ -12,5 +12,5 @@ fi
 echo "Container type: ${CONTAINER_TYPE}"
 
 echo "Test executables"
-EXECUTABLES=('samtools --version' 'star-seq-alignment --version' 'htseq-count --help')
+EXECUTABLES=('anaconda --version')
 for EXE in "${EXECUTABLES[@]}"; do echo "Testing ${EXE}"; ${EXE}; if [ $? -ne 0 ]; then exit 1; fi; done

@@ -1,7 +1,8 @@
 #!/bin/sh
-PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python' 'python-numpy' 'python-matplotlib' 'python-pandas' 'cython' 'jre8-openjdk' 'jdk8-openjdk' 'perl')
-AUR_PACKAGES=('picard-tools' 'fastqc' 'star-seq-alignment' 'python-pysam' 'python-htseq' 'htslib' 'samtools')
+PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'zlib' 'abs' 'fakeroot' 'wget' 'make' 'patch' 'python2' 'boost')
+AUR_PACKAGES=('anaconda' 'metabat')
 AUR_PACKAGES_FIXED=()
+ANACONDA_ENVS=('py2env.yml' 'py3env.yml')
 
 # Install pacman packages
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
@@ -22,6 +23,9 @@ for PKGNAME in ${AUR_PACKAGES[@]}; do cd /home/singleceller; mkdir -p packages/$
 
 # Install AUR packages with fixed and split assets
 for PKGNAME in ${AUR_PACKAGES_FIXED[@]}; do cd /home/singleceller; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; mkdir ${PKGNAME}; PKGVER=$(grep '^pkgver=' /assets/${PKGNAME}/PKGBUILD | sed 's/pkgver=//'); mv /assets/${PKGNAME}/PKGBUILD ${PKGNAME}/PKGBUILD; zcat /assets/${PKGNAME}/split/xa*.gz > ${PKGNAME}/${PKGNAME}-${PKGVER}.tar.gz && rm -rf /assets/${PKGNAME}; chmod -R a+wrX /home/singleceller/packages/${PKGNAME}; cd ${PKGNAME}; su singleceller -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
+
+# Install anaconda environments
+for AENV in ${ANACONDA_ENVS[@]}; do conda env create -f /assets/anaconda/${AENV}; done
 
 # Remove cache and tmp files
 pacman -Scc --noconfirm; rm -rf /home/singleceller/packages
