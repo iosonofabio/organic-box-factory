@@ -12,12 +12,10 @@ At the moment the following pipelines are available - each pipeline is a differe
  - [singlecell-10X](https://github.com/iosonofabio/quakelab-containers/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
  - [cell-free RNA-Seq](https://github.com/iosonofabio/quakelab-containers/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
 
-## How to use this repo
-If you are a user that would like to run a pipeline without bothering about operating systems, clusters, et al., just install the image from docker-hub or singularity-hub and run it (see below). If you are a developer searching for working examples of a pipeline, including the continuous integration and deployment to docker-hub and singularity-hub, clone the repo and start coding away from the `Dockerfile` and `.travis.yml`!
+## Usage
+If you are a user that would like to run a pipeline without bothering about operating systems, clusters, et al., just install the image from docker-hub or singularity-hub and run it.
 
-## Image istallation
-The current images are hosted here:
-
+### Install an image
  - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:<branch name>`
  - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:<branch name>`
 
@@ -25,7 +23,16 @@ where `<branch name>` is the name of the git branch/pipeline you want to install
 
 **NOTE**: you may need a development version of singularity to use the command `pull`.
 
-## Usage
-First, install the image with Docker or Singularity. Then you can execute any software on the image, e.g. the shipped `pipeline`:
+### Run software on the image
+After installing an image:
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers:<branch name> <command>`
+ - Singularity: `singularity exec <img filename> <command>`
+
+### Run the default pipeline
+Some images (e.g. `singlecell`) ship with a default `pipeline` command:
  - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers:<branch name> pipeline --help`
  - Singularity: `singularity exec <img filename> pipeline --help`
+
+### Contributing/developers
+If you are a developer searching for working examples of a pipeline, clone the repo and start coding away from the `Dockerfile` and `.travis.yml`! If you want to contribute to this repo, just open an issue on github.
+
