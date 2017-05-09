@@ -26,6 +26,6 @@ where `<branch name>` is the name of the git branch/pipeline you want to install
 **NOTE**: you may need a development version of singularity to use the command `pull`.
 
 ## Usage
-
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers pipeline --help`
+First, install the image with Docker or Singularity. Then you can execute any software on the image, e.g. the shipped `pipeline`:
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers:<branch name> pipeline --help`
  - Singularity: `singularity exec <img filename> pipeline --help`
