@@ -8,10 +8,10 @@ This repository offers access to a number of Docker and Singularity images to ex
 
 At the moment the following pipelines are available - each pipeline is a different branch (the `master` branch is just an empty skeleton):
 
- - [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab_containers) [singlecell](https://github.com/iosonofabio/quakelab-containers/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
- - [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell-10X)](https://travis-ci.org/iosonofabio/quakelab_containers) [singlecell-10X](https://github.com/iosonofabio/quakelab-containers/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
- - [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/quakelab_containers) [cell-free RNA-Seq](https://github.com/iosonofabio/quakelab-containers/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
- - *metagenomics*: **planned**
+ - [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab-containers) [singlecell](https://github.com/iosonofabio/quakelab-containers/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
+ - [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell-10X)](https://travis-ci.org/iosonofabio/quakelab-containers) [singlecell-10X](https://github.com/iosonofabio/quakelab-containers/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
+ - [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/quakelab-containers) [cell-free RNA-Seq](https://github.com/iosonofabio/quakelab-containers/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
+ - [![Docker Build Status](https://img.shields.io/docker/build/iosonofabio/quakelab-containers.svg)](https://cloud.docker.com/app/iosonofabio/repository/docker/iosonofabio/quakelab-containers/builds) [metagenomics](https://github.com/iosonofabio/quakelab-containers/tree/metagenomics): environmental samples including non-culturable organisms
 
 ## Usage
 If you are a user that would like to run a pipeline without bothering about operating systems, clusters, et al., just install the image from docker-hub or singularity-hub and run it.
