@@ -43,7 +43,7 @@ dependencies:
 - bioconda::perl-threaded=5.22.0=pl5.22.0_12
 - bioconda::perl-vcftools-vcf=0.953=3
 - bioconda::picard=2.9.0=py35_0
-- bioconda::prodigal=2.60=1
+- bioconda::prodigal=2.6.3
 - bioconda::pysftp=0.2.8=py35_0
 - bioconda::raxml=8.2.9=1
 - bioconda::samtools=1.3.1=5
