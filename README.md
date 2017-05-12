@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab_containers)
+[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/quakelab_containers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# quakelab-containers: singlecell
+# Organic Box Factory: singlecell RNA-Seq
 This repository allows you to build a Docker image **and** a singularity image for single cell RNA-Seq a la SmartSeq2 ([STAR](https://github.com/alexdobin/STAR) mapping, [htseq-count](https://github.com/simon-anders/htseq) gene counting).
 
 ## How to use this repo
@@ -10,7 +10,7 @@ If you are a singlecell user that would like to run the pipeline without botheri
 ## Image istallation
 The current images are hosted here:
 
- - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:singlecell`
+ - [Docker](https://hub.docker.com/r/iosonofabio/organic-box-factory/): `docker pull iosonofabio/organic-box-factory:singlecell`
  - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:singlecell`
 
 **NOTE**: you may need a development version of singularity to use the command `pull`.
