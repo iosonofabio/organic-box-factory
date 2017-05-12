@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=metagenomics)](https://travis-ci.org/iosonofabio/quakelab-containers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# quakelab-containers: metagenomics
+# Organic Box Factory: metagenomics
 This repository allows you to build a Docker image **and** a singularity image for the metagenomics pipeline.
 
 ## How to use this repo
