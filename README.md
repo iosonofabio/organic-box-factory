@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/quakelab-containers)
+[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/organic-box-factory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# quakelab-containers: cellfreeRNA
+# Organic Box Factory: cell-free RNA Seq
 This repository allows you to build a Docker image **and** a singularity image for the cell-free RNA-Seq pipeline.
 
 ## How to use this repo
@@ -10,12 +10,12 @@ If you are a user that would like to run the pipeline without bothering about op
 ## Image istallation
 The current images are hosted here:
 
- - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:cellfreeRNA`
- - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab-containers:cellfreeRNA`
+ - [Docker](https://hub.docker.com/r/iosonofabio/organic-box-factory/): `docker pull iosonofabio/organic-box-factory:cellfreeRNA`
+ - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/organic-box-factory:cellfreeRNA`
 
 **NOTE**: you may need a development version of singularity to use the command `pull`.
 
 ## Usage
 
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers:cellfreeRNA pipeline --help`
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/organic-box-factory:cellfreeRNA pipeline --help`
  - Singularity: `singularity exec <img filename> pipeline --help`
