@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=singlecell-10X)](https://travis-ci.org/iosonofabio/quakelab-containers)
+[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=singlecell-10X)](https://travis-ci.org/iosonofabio/organic-box-factory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# quakelab-containers: singlecell-10X
+# Organic Box Factory: singlecell RNA-Seq with 10X Genomics
 This repository allows you to build a Docker image **and** a singularity image for the singlecell RNA-Seq pipeline using 10X Genomics libraries and `cellranger` software.
 
 ## How to use this repo
@@ -10,12 +10,12 @@ If you are a singlecell user that would like to run the pipeline without botheri
 ## Image istallation
 The current images are hosted here:
 
- - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:singlecell-10X`
- - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab-containers:singlecell-10X`
+ - [Docker](https://hub.docker.com/r/iosonofabio/organic-box-factory/): `docker pull iosonofabio/organic-box-factory:singlecell-10X`
+ - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/organic-box-factory:singlecell-10X`
 
 **NOTE**: you may need a development version of singularity to use the command `pull`.
 
 ## Usage
 
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers:singlecell-10X pipeline --help`
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/organic-box-factory:singlecell-10X pipeline --help`
  - Singularity: `singularity exec <img filename> pipeline --help`
