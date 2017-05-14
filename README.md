@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/iosonofabio/quakelab-containers.svg?branch=metagenomics)](https://travis-ci.org/iosonofabio/quakelab-containers)
+[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=metagenomics)](https://travis-ci.org/iosonofabio/organic-box-factory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Organic Box Factory: metagenomics
@@ -10,12 +10,12 @@ If you are a user that would like to run the pipeline without bothering about op
 ## Image istallation
 The current images are hosted here:
 
- - [Docker](https://hub.docker.com/r/iosonofabio/quakelab-containers/): `docker pull iosonofabio/quakelab-containers:metagenomics`
- - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab-containers:metagenomics`
+ - [Docker](https://hub.docker.com/r/iosonofabio/organic-box-factory/): `docker pull iosonofabio/organic-box-factory:metagenomics`
+ - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/organic-box-factory:metagenomics`
 
 **NOTE**: you may need a development version of singularity to use the command `pull`.
 
 ## Usage
 
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/quakelab-containers:metagenomics pipeline --help`
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/organic-box-factory:metagenomics pipeline --help`
  - Singularity: `singularity exec <img filename> pipeline --help`
