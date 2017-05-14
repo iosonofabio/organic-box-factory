@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![Logo](logo.svg)
+![Logo](logo.png)
 # Organic Box Factory
 High-throughput sequencing applications often involve computationally costly operations that cannot be performed on a local computer (e.g. a laptop); instead, they require a cluster of computers that work in parallel. Two cluster architectures are common in 2017: physical clusters, for instance Stanford's [Sherlock](http://sherlock.stanford.edu/mediawiki/index.php/Main_Page), and cloud-based services such as [Amazon Web Services](https://aws.amazon.com/) and [Google Computing Engine](https://cloud.google.com/compute/). Either way, access to high-throughput clusters is restricted, and installing and configuring all necessary software on every different platform can be (and typically is) a time-consuming and frustrating task. Thanks to light virtualization technologies like [Docker](https://www.docker.com/), preconfigured *images* can be prepared and tested ahead of time. Whereas cloud systems virtualize the hardware and give customers superuser access to their computing instances and can run Docker without issues, physical clusters typically distribute only non-priviledged accounts and require a different virtualization scheme, a need that was recently filled by [Singularity](http://singularity.lbl.gov/).
 
