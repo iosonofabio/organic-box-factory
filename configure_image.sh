@@ -1,4 +1,7 @@
 #!/bin/sh
+# Use bash strict mode
+set -euo pipefail
+
 PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'fakeroot' 'wget' 'make' 'python2')
 AUR_PACKAGES=('bcl2fastq')
 
@@ -14,7 +17,7 @@ echo 'pacman packages installed'
 useradd -m -g users -G wheel -s /bin/bash aur
 
 # Install aura
-cd /home/aur; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/aur/packages/aura; su aur -c makepkg; pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar --noconfirm
+cd /home/aur; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/aur/packages/aura; su aur -c makepkg; pacman -U aura-bin-*.pkg.tar --noconfirm
 
 # Install AUR packages
 for PKGNAME in ${AUR_PACKAGES[@]}; do cd /home/aur; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/aur/packages/${PKGNAME}; cd ${PKGNAME}; su aur -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
