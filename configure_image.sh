@@ -3,7 +3,8 @@
 set -euo pipefail
 
 PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'fakeroot' 'wget' 'make' 'python2')
-AUR_PACKAGES=('bcl2fastq')
+AUR_PACKAGES=()
+AUR_PACKAGES_FIXED=('bcl2fastq')
 
 # Install pacman packages
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
@@ -21,6 +22,9 @@ cd /home/aur; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlin
 
 # Install AUR packages
 for PKGNAME in ${AUR_PACKAGES[@]}; do cd /home/aur; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/aur/packages/${PKGNAME}; cd ${PKGNAME}; su aur -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
+
+# Install AUR packages with fixed PKGBUILD
+for PKGNAME in ${AUR_PACKAGES_FIXED[@]}; do cd /home/aur; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; mkdir ${PKGNAME}; PKGVER=$(grep '^pkgver=' /assets/${PKGNAME}/PKGBUILD | sed 's/pkgver=//'); mv /assets/${PKGNAME}/PKGBUILD ${PKGNAME}/PKGBUILD; chmod -R a+wrX /home/aur/packages/${PKGNAME}; cd ${PKGNAME}; su aur -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 
 # Remove cache and tmp files
 pacman -Scc --noconfirm; rm -rf /home/aur/packages
