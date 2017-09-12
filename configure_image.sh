@@ -1,5 +1,5 @@
 #!/bin/sh
-PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'abs' 'fakeroot' 'wget' 'make' 'python2')
+PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'fakeroot' 'wget' 'make' 'python2')
 AUR_PACKAGES=('bcl2fastq')
 
 # Install pacman packages
