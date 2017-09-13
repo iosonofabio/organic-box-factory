@@ -14,20 +14,20 @@ python:
 before_install:
  # Docker build
  - docker build -t "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" .
+ # NOTE: Singularity testing would be nice, but we run out of time (!)
  # Install singularity on the host
- - ./.travis_install_singularity.sh
+ #- ./.travis_install_singularity.sh
  # Singularity build (from docker)
- - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity "iosonofabio/organic-box-factory:$TRAVIS_BRANCH";
+ #- docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity "iosonofabio/organic-box-factory:$TRAVIS_BRANCH";
  # Singularity build (from Singularity file)
- # Travis gives us 7.5GB
- - sudo singularity create --size 5000 ./singularity_images/quakelab-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/quakelab-singularity-bootstrap.img Singularity
+ #- sudo singularity create --size 5000 ./singularity_images/quakelab-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/quakelab-singularity-bootstrap.img Singularity
 
 script:
  # Docker tests
  - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name organic-box-factory --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" /bin/sh -c /tests/test.sh
  # Singularity tests
- - singularity exec singularity_images/iosonofabio_organic-box-factory*.img tests/test.sh
- - singularity exec singularity_images/quakelab-singularity-bootstrap.img tests/test.sh
+ #- singularity exec singularity_images/iosonofabio_organic-box-factory*.img tests/test.sh
+ #- singularity exec singularity_images/quakelab-singularity-bootstrap.img tests/test.sh
 
 after_success:
  # Uncomment for deploying
