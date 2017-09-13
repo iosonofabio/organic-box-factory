@@ -18,8 +18,9 @@ before_install:
  - ./.travis_install_singularity.sh
  # Singularity build (from docker)
  - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity "iosonofabio/organic-box-factory:$TRAVIS_BRANCH";
- # Singularity build (from Singulatiry file)
- - sudo singularity create --size 2500 ./singularity_images/quakelab-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/quakelab-singularity-bootstrap.img Singularity
+ # Singularity build (from Singularity file)
+ # Travis gives us 7.5GB
+ - sudo singularity create --size 5000 ./singularity_images/quakelab-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/quakelab-singularity-bootstrap.img Singularity
 
 script:
  # Docker tests
