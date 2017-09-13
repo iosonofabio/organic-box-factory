@@ -13,6 +13,7 @@ At the moment the following pipelines are available - each pipeline is a differe
 
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/organic-box-factory) [singlecell](https://github.com/iosonofabio/organic-box-factory/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=singlecell-10X)](https://travis-ci.org/iosonofabio/organic-box-factory) [singlecell-10X](https://github.com/iosonofabio/organic-box-factory/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
+ - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq)](https://travis-ci.org/iosonofabio/organic-box-factory) [bcl2fastq](https://github.com/iosonofabio/organic-box-factory/tree/bcl2fastq): demultiplex and call FastQ from illumina machines
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/organic-box-factory) [cell-free RNA-Seq](https://github.com/iosonofabio/organic-box-factory/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
  - [metagenomics](https://github.com/iosonofabio/organic-box-factory/tree/metagenomics): environmental samples including non-culturable organisms
 
