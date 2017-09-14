@@ -24,7 +24,7 @@ before_install:
 
 script:
  # Docker tests
- - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name organic-box-factory --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" /bin/sh -c /tests/test.sh
+ - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name organic-box-factory --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" --entrypoint /bin/sh /tests/test.sh
  # Singularity tests
  #- singularity exec singularity_images/iosonofabio_organic-box-factory*.img tests/test.sh
  #- singularity exec singularity_images/quakelab-singularity-bootstrap.img tests/test.sh
