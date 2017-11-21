@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=stampy)](https://travis-ci.org/iosonofabio/quakelab_containers)
+[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=stampy)](https://travis-ci.org/iosonofabio/organic-box-factory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Organic Box Factory: stampy
