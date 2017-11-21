@@ -7,7 +7,7 @@ pacman --noconfirm -S make gcc binutils gzip abs fakeroot wget python2 python2-n
 
 # Install aura
 useradd -m -g users -G wheel -s /bin/bash nonroot
-cd /home/nonroot; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/nonroot/packages/aura; su nonroot -c makepkg; pacman -U aura-bin-*-x86_64.pkg.tar --noconfirm
+cd /home/nonroot; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/nonroot/packages/aura; su nonroot -c makepkg; pacman -U $(ls aura-bin-*-x86_64.pkg.tar) --noconfirm
 
 # Install AUR packages
 for PKGNAME in 'stampy'; do cd /home/nonroot; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/nonroot/packages/${PKGNAME}; cd ${PKGNAME}; su nonroot -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
