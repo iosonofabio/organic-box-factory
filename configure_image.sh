@@ -3,7 +3,7 @@
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
 pacman -Syu --noconfirm
-pacman --noconfirm -S make gcc binutils gzip abs fakeroot wget python2 python2-numpy
+pacman --noconfirm -S make gcc binutils gzip fakeroot wget python2 python2-numpy
 
 # Install aura
 useradd -m -g users -G wheel -s /bin/bash nonroot
