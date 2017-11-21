@@ -2,7 +2,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Organic Box Factory: stampy
-This repository allows you to build a Docker image **and** a singularity image for the mapper ([Stampy](http://www.well.ox.ac.uk/project-stampy).
+This repository allows you to build a Docker image **and** a singularity image for the mapper [Stampy](http://www.well.ox.ac.uk/project-stampy).
 
 ## How to use this repo
 If you are a stampy user that would like to run the pipeline without bothering about operating systems, clusters, et al., just install the image and run it (see below). If you are a developer searching for working examples of this pipeline, including the continuous integration and deployment to docker-hub and singularity-hub, clone the repo and start coding away from the `Dockerfile` and `.travis.yml`!
