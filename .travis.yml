@@ -18,15 +18,15 @@ before_install:
  - ./.travis_install_singularity.sh
  # Singularity build (from docker)
  - docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(pwd)/singularity_images:/output --privileged -t --rm singularityware/docker2singularity "iosonofabio/organic-box-factory:$TRAVIS_BRANCH";
- # Singularity build (from Singulatiry file)
- - sudo singularity create --size 2500 ./singularity_images/singlecell-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/singlecell-singularity-bootstrap.img Singularity
+ # Singularity build (from Singularity file)
+ - sudo singularity create --size 2500 ./singularity_images/stampy-singularity-bootstrap.img; sudo singularity bootstrap ./singularity_images/stampy-singularity-bootstrap.img Singularity
 
 script:
  # Docker tests
- - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name singlecell --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" /bin/sh -c /tests/test_STAR_htseq-count_yeast.sh
+ - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name stampy --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" /bin/sh -c /tests/test.sh
  # Singularity tests
- - singularity exec singularity_images/iosonofabio_organic-box-factory*.img tests/test_STAR_htseq-count_yeast.sh
- - singularity exec singularity_images/singlecell-singularity-bootstrap.img tests/test_STAR_htseq-count_yeast.sh
+ - singularity exec singularity_images/iosonofabio_organic-box-factory*.img tests/test.sh
+ - singularity exec singularity_images/stampy-singularity-bootstrap.img tests/test.sh
 
 after_success:
  # Push to docker hub
