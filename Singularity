@@ -11,4 +11,4 @@ From:finalduty/archlinux:latest
     mkdir /mnt/singularity_bind
 
 %runscript
-    exec /usr/bin/stampy "$@"
+    exec /opt/stampy-1.0.32/stampy.py "$@"
