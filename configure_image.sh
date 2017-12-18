@@ -15,6 +15,8 @@ pacman --noconfirm -S ${PACMAN_PACKAGES[@]}
 echo 'pacman packages installed'
 
 # Prepare nonroot user for makepkg
+groupadd users
+groupadd wheel
 useradd -m -g users -G wheel -s /bin/bash aur
 
 # Install aura

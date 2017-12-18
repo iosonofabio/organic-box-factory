@@ -13,4 +13,4 @@ echo "Container type: ${CONTAINER_TYPE}"
 
 echo "Test executables"
 EXECUTABLES=('bcl2fastq --help')
-for EXE in "${EXECUTABLES[@]}"; do echo "Testing ${EXE}"; ${EXE}; if [ $? -ne 0 ]; then exit $?; fi; done
+for EXE in "${EXECUTABLES[@]}"; do echo "Testing ${EXE}"; ${EXE}; if [ $? -ne 0 ]; then exit $?; else echo "Works"; fi; done
