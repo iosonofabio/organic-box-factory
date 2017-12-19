@@ -17,5 +17,5 @@ The current images are hosted here:
 
 ## Usage
 
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/organic-box-factory:bcl2fastq bcl2fastq --help`
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name imagename --rm iosonofabio/organic-box-factory:bcl2fastq-2.20 --help`
  - Singularity: `singularity exec <img filename> bcl2fastq --help`
