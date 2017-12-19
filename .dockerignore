@@ -1,0 +1,6 @@
+.git
+.gitignore
+Dockerfile
+assets/bcl2fastq/src
+assets/bcl2fastq/pkg
+singularity_images

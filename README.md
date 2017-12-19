@@ -13,7 +13,8 @@ At the moment the following pipelines are available - each pipeline is a differe
 
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=singlecell)](https://travis-ci.org/iosonofabio/organic-box-factory) [singlecell](https://github.com/iosonofabio/organic-box-factory/tree/singlecell): scRNA-Seq on full-length transcripts (e.g. via SmartSeq2 libraries)
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=singlecell-10X)](https://travis-ci.org/iosonofabio/organic-box-factory) [singlecell-10X](https://github.com/iosonofabio/organic-box-factory/tree/singlecell-10X): scRNA-Seq on 3'-end of transcripts using 10X Genomics libraries and `cellranger` software
- - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq)](https://travis-ci.org/iosonofabio/organic-box-factory) [bcl2fastq](https://github.com/iosonofabio/organic-box-factory/tree/bcl2fastq): demultiplex and call FastQ from illumina machines
+ - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq)](https://travis-ci.org/iosonofabio/organic-box-factory) [bcl2fastq-2.19](https://github.com/iosonofabio/organic-box-factory/tree/bcl2fastq): demultiplex and call FastQ from illumina machines (version 2.19)
+ - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq-2.20)](https://travis-ci.org/iosonofabio/organic-box-factory) [bcl2fastq-2.20](https://github.com/iosonofabio/organic-box-factory/tree/bcl2fastq-2.20): demultiplex and call FastQ from illumina machines (version 2.20)
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/organic-box-factory) [cell-free RNA-Seq](https://github.com/iosonofabio/organic-box-factory/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
  - [metagenomics](https://github.com/iosonofabio/organic-box-factory/tree/metagenomics): environmental samples including non-culturable organisms
 
@@ -39,4 +40,9 @@ Some images (e.g. `singlecell`) ship with a default `pipeline` command:
  - Singularity: `singularity exec <img filename> pipeline --help`
 
 ### Contributing/developers
-If you are a developer searching for working examples of a pipeline, clone the repo and start coding away from the `Dockerfile` and `.travis.yml`! If you want to contribute to this repo, just open an issue on github.
+If you are a developer searching for working examples of a pipeline:
+1. clone the repo from the branch you like
+2. if you cloned from `master`, rename `travis.yml` into `.travis.yml` (notice the dot)
+3. edit `.travis.yml`, `consigure_image.sh`, `Dockerfile`, `Singularity`, and `tests/test.sh`!
+
+If you want to contribute to this repo, just open an issue on github. PRs always welcome!
