@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq2.20)](https://travis-ci.org/iosonofabio/organic-box-factory)
+[![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq-2.20)](https://travis-ci.org/iosonofabio/organic-box-factory)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 # Organic Box Factory: bcl2fastq
