@@ -6,4 +6,4 @@ COPY assets /assets
 COPY configure_image.sh /configure_image.sh
 RUN /usr/bin/bash configure_image.sh
 # Set ENTRYPOINT to run the Docker/Singularity image
-ENTRYPOINT /usr/bin/bcl2fastq
+ENTRYPOINT ["/usr/bin/bcl2fastq"]
