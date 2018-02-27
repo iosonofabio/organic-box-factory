@@ -17,6 +17,7 @@ At the moment the following pipelines are available - each pipeline is a differe
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=bcl2fastq-2.20)](https://travis-ci.org/iosonofabio/organic-box-factory) [bcl2fastq-2.20](https://github.com/iosonofabio/organic-box-factory/tree/bcl2fastq-2.20): demultiplex and call FastQ from illumina machines (version 2.20)
  - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=cellfreeRNA)](https://travis-ci.org/iosonofabio/organic-box-factory) [cell-free RNA-Seq](https://github.com/iosonofabio/organic-box-factory/tree/cellfreeRNA): cell-free RNA including picard-tools (for duplicate removal) and fastqc.
  - [metagenomics](https://github.com/iosonofabio/organic-box-factory/tree/metagenomics): environmental samples including non-culturable organisms
+ - [![Build Status](https://travis-ci.org/iosonofabio/organic-box-factory.svg?branch=stampy)](https://travis-ci.org/iosonofabio/organic-box-factory) [stampy](https://github.com/iosonofabio/organic-box-factory/tree/stampy): map reads against highly variable genomic references.
 
 ## Usage
 If you are a user that would like to run a pipeline without bothering about operating systems, clusters, et al., just install the image from docker-hub or singularity-hub and run it.
