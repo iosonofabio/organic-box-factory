@@ -14,8 +14,7 @@ The current images are hosted here:
  - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:ExpressionMatrix2`
 
 ## Fire up container
-
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
+ - Docker: `docker run -it -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
  - Singularity: `singularity exec <img filename> bash`
 
 ## Usage
