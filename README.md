@@ -45,7 +45,7 @@ cp ... projectdata/meta.csv
 
 Run the docker/singularity container as of above:
 ```bash
-`docker run -it -p 127.0.0.1:17100:17100 -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
+docker run -it -p 127.0.0.1:17100:17100 -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash
 ```
 
 Now you're inside the container. Go inside `projectdata` and download the input script from Paolo's:
