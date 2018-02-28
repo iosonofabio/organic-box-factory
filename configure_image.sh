@@ -1,15 +1,28 @@
 #!/bin/sh
+# Use bash strict mode
+set -euo pipefail
+
+PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'fakeroot' 'wget' 'make' 'python' 'python-numpy' 'cmake' 'python-pytest' 'doxygen' 'python-setuptools' 'python-sphinx')
+AUR_PACKAGES=('python-breathe' 'pybind11' 'expressionmatrix2-git')
+
 # Install pacman packages
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
 pacman -Syu --noconfirm
-pacman --noconfirm -S make gcc binutils gzip abs fakeroot wget python python-numpy python-matplotlib cmake python-pytest doxygen python-setuptools python-sphinx
+echo 'Install pacman packages...'
+pacman --noconfirm -S ${PACMAN_PACKAGES[@]}
+echo 'pacman packages installed'
+
+# Prepare nonroot user for makepkg
+groupadd users
+groupadd wheel
+useradd -m -g users -G wheel -s /bin/bash aur
 
 # Install aura
-useradd -m -g users -G wheel -s /bin/bash obf
-cd /home/obf; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/obf/packages/aura; su obf -c makepkg; pacman -U aura-bin-*-x86_64.pkg.tar --noconfirm
+cd /home/aur; mkdir -p packages/aura; cd packages/aura; wget https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz; tar -xvf aura-bin.tar.gz; cd aura-bin; chmod -R a+wrX /home/aur/packages/aura; su aur -c makepkg; pacman -U aura-bin-*.pkg.tar --noconfirm
 
 # Install AUR packages
-for PKGNAME in 'python-breathe' 'pybind11' 'expressionmatrix2-git'; do cd /home/obf; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/obf/packages/${PKGNAME}; cd ${PKGNAME}; su obf -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
-pacman -Scc --noconfirm; rm -rf /home/obf/packages
+for PKGNAME in ${AUR_PACKAGES[@]}; do cd /home/aur; mkdir -p packages/${PKGNAME}; cd packages/${PKGNAME}; aura -Aw ${PKGNAME}; tar -xf ${PKGNAME}.tar.gz; chmod -R a+wrX /home/aur/packages/${PKGNAME}; cd ${PKGNAME}; su aur -c makepkg; pacman -U $(ls "${PKGNAME}"-*.pkg.tar) --noconfirm; done
 
+# Remove cache and tmp files
+pacman -Scc --noconfirm; rm -rf /home/aur/packages
