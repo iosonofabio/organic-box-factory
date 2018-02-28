@@ -8,9 +8,9 @@ AUR_PACKAGES=('python-breathe' 'pybind11' 'expressionmatrix2-git')
 # Install pacman packages
 echo 'Server = http://mirror.us.leaseweb.net/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist; echo 'Server = http://archlinux.polymorf.fr/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 sed -i "s/PKGEXT='.pkg.tar.xz'/PKGEXT='.pkg.tar'/" /etc/makepkg.conf
-pacman -Syu --noconfirm
+pacman -Syuq --noconfirm
 echo 'Install pacman packages...'
-pacman --noconfirm -S ${PACMAN_PACKAGES[@]}
+pacman --noconfirm -Sq ${PACMAN_PACKAGES[@]}
 echo 'pacman packages installed'
 
 # Prepare nonroot user for makepkg
