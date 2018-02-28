@@ -14,8 +14,10 @@ The current images are hosted here:
  - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:ExpressionMatrix2`
 
 ## Fire up container
- - Docker: `docker run -it -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
+ - Docker: `docker run -it -p 127.0.0.1:17100:17100 -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
  - Singularity: `singularity exec <img filename> bash`
+
+**NOTE**: singularity does not support port mapping [yet](https://groups.google.com/a/lbl.gov/forum/#!topic/singularity/znwthR5K0dA).
 
 ## Usage
 Once you are shelling into the container:
@@ -28,3 +30,50 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> 
 ```
 This shows that you can import the `ExpressionMatrix2` Python module, follow the examples on [Paolo's repo](https://github.com/chanzuckerberg/ExpressionMatrix2).
+
+## Basic example
+Make a folder on your local machine called `projectdata`:
+```bash
+mkdir projectdata
+```
+
+Copy your counts CSV table and metadata CSV table into that folder, say called `counts.csv` and `meta.csv`.
+```bash
+cp ... projectdata/counts.csv
+cp ... projectdata/meta.csv
+```
+
+Run the docker/singularity container as of above:
+```bash
+`docker run -it -p 127.0.0.1:17100:17100 -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
+```
+
+Now you're inside the container. Go inside `projectdata` and download the input script from Paolo's:
+```bash
+cd /data/projectdata
+wget https://raw.githubusercontent.com/chanzuckerberg/ExpressionMatrix2/master/tests/CaseStudy1/input.py
+```
+
+Using an editor of your choice (inside or outside the container), edit the script to use `counts.csv` and `meta.csv`. Then, from inside the container run the script:
+```bash
+python input.py
+```
+
+Now you have a subfolder called `data`.
+
+**NOTE**: If the `input.py` script failed for any reason, you have to delete this folder to retry (**dangerous command!!**):
+```bash
+rm -rf ./data
+```
+
+Now download the webserver script from Paolo's:
+```bash
+wget https://raw.githubusercontent.com/chanzuckerberg/ExpressionMatrix2/master/tests/CaseStudy1/runServer.py
+```
+
+and finally run it:
+```bash
+python runServer.py
+```
+
+Now you can point your browser on the local machine to `http://127.0.0.1:17100` or (equivalently) `http://localhost:17100` to see the result. Happy graphing!
