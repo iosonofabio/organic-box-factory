@@ -20,7 +20,7 @@ jobs:
         # Docker build
         - docker build -t "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" .
         # Docker tests
-        - docker run -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name expressionmatrix2 --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" /usr/bin/python /tests/test.py
+        - docker run -e CONTAINER_TYPE='docker' -v $(pwd)/example_data:/data/example_data -v $(pwd)/tests:/tests --name expressionmatrix2 --rm "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" /usr/bin/python /tests/test.py
         # Push to docker hub
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
         - docker push "iosonofabio/organic-box-factory:$TRAVIS_BRANCH";
