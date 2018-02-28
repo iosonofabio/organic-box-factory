@@ -2,6 +2,9 @@
 pkgname='singularity-container'
 pkgver=2.4.2
 
+echo "Install deps"
+sudo apt-get install squashfs-tools
+
 echo "Download"
 mkdir ${pkgname}
 cd ${pkgname}
