@@ -13,10 +13,19 @@ The current images are hosted here:
  - [Docker](https://hub.docker.com/r/iosonofabio/organic-box-factory/): `docker pull iosonofabio/organic-box-factory:ExpressionMatrix2`
  - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:ExpressionMatrix2`
 
-## Usage
+## Fire up container
 
- - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/expressionmatrix2-container bash`
+ - Docker: `docker run -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
  - Singularity: `singularity exec <img filename> bash`
 
-## Examples
-TODO
+## Usage
+Once you are shelling into the container:
+```bash
+[root@<magic number> /]# python
+Python 3.6.4 (default, Jan  5 2018, 02:35:40) 
+[GCC 7.2.1 20171224] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import ExpressionMatrix2
+>>> 
+```
+This shows that you can import the `ExpressionMatrix2` Python module, follow the examples on [Paolo's repo](https://github.com/chanzuckerberg/ExpressionMatrix2).
