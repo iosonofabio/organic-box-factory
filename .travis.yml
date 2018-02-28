@@ -15,6 +15,7 @@ jobs:
       os: linux
       dist: trusty
       sudo: required
+      env: CONTAINER_TYPE=docker
       script:
         # Docker build
         - docker build -t "iosonofabio/organic-box-factory:$TRAVIS_BRANCH" .
@@ -28,6 +29,7 @@ jobs:
     - os: linux
       dist: trusty
       sudo: required
+      env: CONTAINER_TYPE=singularity
       script:
         # Install singularity on the host
         - ./.travis_install_singularity.sh
