@@ -34,8 +34,8 @@ jobs:
         # Install singularity on the host
         - ./.travis_install_singularity.sh
         # Singularity build (from Singularity file)
-        - sudo singularity build ./singularity_images/expressionmatrix2.img Singularity
+        - sudo singularity build expressionmatrix2.img Singularity
         # Singularity tests
-        - singularity exec singularity_images/expressionmatrix2.img tests/test.py
+        - singularity exec expressionmatrix2.img tests/test.py
         # Push to singularity hub
         # FIXME: can this be done programmatically at all??
