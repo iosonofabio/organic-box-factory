@@ -8,7 +8,7 @@ cd ${pkgname}
 wget https://github.com/singularityware/singularity/releases/download/${pkgver}/singularity-${pkgver}.tar.gz
 
 echo "Extract tar.gz"
-tar -xvf ${pkgver}.tar.gz
+tar -xvf singularity-${pkgver}.tar.gz
 
 echo "Configure"
 cd singularity-${pkgver}
