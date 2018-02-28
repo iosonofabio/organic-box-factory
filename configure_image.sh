@@ -2,7 +2,7 @@
 # Use bash strict mode
 set -euo pipefail
 
-PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'fakeroot' 'wget' 'make' 'python' 'python2' 'python2-setuptools' 'python-numpy' 'cmake' 'python-pytest' 'doxygen' 'python-setuptools' 'python-sphinx')
+PACMAN_PACKAGES=('binutils' 'gcc' 'gzip' 'fakeroot' 'wget' 'make' 'git' 'python' 'python2' 'python2-setuptools' 'python-numpy' 'cmake' 'python-pytest' 'doxygen' 'python-setuptools' 'python-sphinx')
 AUR_PACKAGES=('python-breathe' 'pybind11' 'expressionmatrix2-git')
 
 # Install pacman packages
