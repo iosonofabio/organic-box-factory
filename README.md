@@ -13,6 +13,10 @@ The current images are hosted here:
  - [Docker](https://hub.docker.com/r/iosonofabio/organic-box-factory/): `docker pull iosonofabio/organic-box-factory:ExpressionMatrix2`
  - [Singularity](https://singularity-hub.org/collections/141/): `singularity pull shub://iosonofabio/quakelab_containers:ExpressionMatrix2`
 
+**NOTE**: docker requires both root privileges and an app running in the background:
+- For **Linux** users, that's typically a daemon (start it via systemctl is that's your cup of tea).
+- For **OSX** users, that's still a daemon but it has a friendly name: "Docker App" - start the "Docker App" before calling `docker pull`.
+
 ## Fire up container
  - Docker: `docker run -it -p 127.0.0.1:17100:17100 -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
  - Singularity: `singularity exec <img filename> bash`
