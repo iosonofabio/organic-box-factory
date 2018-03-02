@@ -21,9 +21,11 @@ The current images are hosted here:
  - Docker: `docker run -it -p 127.0.0.1:17100:17100 -v $(pwd)/projectdata:/data/projectdata --name ExpressionMatrix2 --rm iosonofabio/organic-box-factory:ExpressionMatrix2 bash`
  - Singularity: `singularity exec <img filename> bash`
 
-**NOTE**: singularity does not support port mapping [yet](https://groups.google.com/a/lbl.gov/forum/#!topic/singularity/znwthR5K0dA).
+**NOTE**:
+ - singularity does not support port mapping [yet](https://groups.google.com/a/lbl.gov/forum/#!topic/singularity/znwthR5K0dA).
+ - The docker command has two important options: `-p` connects the network ports if you want to run the webserver, `-v` connects a folder of your local machine with a folder **inside** the container (see [docs](https://docs.docker.com/engine/reference/commandline/run/)).
 
-## Usage
+## Inside the container
 Once you are shelling into the container:
 ```bash
 [root@<magic number> /]# python
